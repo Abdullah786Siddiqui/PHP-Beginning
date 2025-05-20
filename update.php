@@ -14,7 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   $sql = "UPDATE students SET name='$name' , email='$email' ,age = $age ,gender = '$gender' , class = '$class' where id = $id ";
   $result = $conn->query($sql);
-  header("Location: view.php");
+  if($result){
+    echo "<script>
+      alert('Your Data has been Submitted');
+     window.location.href = 'view.php';
+    </script>";
+
+  }
 } else {
   $result = $conn->query("SELECT * FROM students where id = $id");
   $row = $result->fetch_assoc();
